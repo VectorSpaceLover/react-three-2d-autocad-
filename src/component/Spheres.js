@@ -39,7 +39,7 @@ function Spheres({ data, onControl }) {
       tempColor.set(color);
       tempColor.toArray(colorArray, i * 3);
     }
-
+    console.log(colorArray);
     meshRef.current.instanceMatrix.needsUpdate = true;
     colorBufferRef.current.needsUpdate = true;
   }, []);
@@ -92,12 +92,13 @@ function Spheres({ data, onControl }) {
               ref={colorBufferRef}
               attachObject={['attributes', 'color']}
               args={[colorArray, 3]}
-            />
+            >
+              <Html distanceFactor={10} style={{ color: 'white' }}>
+                <div className="content">sdf</div>
+              </Html>
+            </instancedBufferAttribute>
           </sphereBufferGeometry>
           <meshStandardMaterial attach="material" vertexColors={THREE.VertexColors} />
-          <Html distanceFactor={10} style={{ color: 'white' }}>
-            <div className="content">Success</div>
-          </Html>
         </instancedMesh>
       </GestureControl>
     </mesh>

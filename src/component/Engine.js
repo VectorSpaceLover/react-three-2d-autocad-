@@ -5,6 +5,7 @@ import { Preload, MapControls } from '@react-three/drei';
 import Main from './Main';
 import Loader from './Loader';
 import Spheres from './Spheres';
+import SphereItem from './SphereItem';
 
 /**
  * Color palette:
@@ -18,6 +19,7 @@ import Spheres from './Spheres';
  */
 function Engine() {
   const [enabledControls, setEnabledControls] = useState(true);
+  // , setEnabledControls
 
   const staticData = [
     { name: 'Name 1', pv: -20, status: 'normal' },
@@ -94,8 +96,11 @@ function Engine() {
           <ambientLight color={0xffffff} intensity={0.8} />
           <pointLight position={[0, 100, 100]} intensity={0.2} />
           <spotLight position={[0, 0, 1000]} angle={0.15} penumbra={1} intensity={0.5} />
+          {true && (
+            <Spheres data={cylinderData} onControl={(enabled) => setEnabledControls(!enabled)} />
+          )}
 
-          <Spheres data={cylinderData} onControl={(enabled) => setEnabledControls(!enabled)} />
+          {true && <SphereItem data={cylinderData} />}
 
           <Preload all />
 
